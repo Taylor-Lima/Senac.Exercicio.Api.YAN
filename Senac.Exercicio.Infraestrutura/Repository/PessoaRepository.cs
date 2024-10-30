@@ -6,6 +6,27 @@ namespace Senac.Exercicio.Infraestrutura.Repository
 {
     public class PessoaRepository
     {
+        public List<PessoaEntity> ObterPessoas(string cpf)
+        {
+            BancoInstance banco;
+            DataTable retorno = new DataTable();    
+            using(banco = new BancoInstance())
+            {
+                banco.Banco.ExecuteQuery(@"select * from Pessoa where Cpf = @chave", out retorno, "@chave", cpf);
+            }
+            return ConvertList(retorno);
+        }
+        public List<PessoaEntity> ObterPessoasPorNome(string nome)
+        {
+            BancoInstance banco;
+            DataTable dt = new DataTable();
+            using(banco=new BancoInstance())
+            {
+                banco.Banco.ExecuteQuery(@"select * from Pessoa where Nome = @chave", out dt, "@chave", nome);
+            }
+            return ConvertList(dt);
+
+        }
         public List<PessoaEntity> ObterPessoas()
         {
             BancoInstance banco;

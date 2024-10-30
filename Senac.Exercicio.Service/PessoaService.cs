@@ -6,6 +6,12 @@ namespace Senac.Exercicio.Service
 {
     public class PessoaService
     {
+        public List<PessoaEntity> ObterPessoasPorNome(string nome)
+            => new PessoaRepository().ObterPessoasPorNome(nome);
+
+        public List<PessoaEntity> ObterPessoas(string cpf)
+            => new PessoaRepository().ObterPessoas(cpf);
+
         public List<PessoaEntity> ObterPessoas()
             => new PessoaRepository().ObterPessoas();
 
